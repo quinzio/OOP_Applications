@@ -60,4 +60,12 @@ public class Applicant {
 	return ret;
     }
 
+    @Override
+    public String toString() {
+	return name;
+    }
+    
+    
+    
+
 }

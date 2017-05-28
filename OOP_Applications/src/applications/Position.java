@@ -1,6 +1,7 @@
 package applications;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
@@ -12,7 +13,7 @@ import applications.Applicant.Capability;
 
 public class Position {
     private String name;
-    private SortedSet<Skill> skills = new TreeSet<>();
+    private SortedSet<Skill> skills = new TreeSet<>(Comparator.comparing(s -> s.getName()));
     private Map<String, Applicant> applying = new TreeMap<>();
     private Applicant winner;
 

@@ -39,11 +39,12 @@ public class HandleApplications {
 	if (positions.containsKey(nome))
 	    throw new ApplicationException();
 	for (String s : skillsReqd) {
-	    if (positions.containsKey(s))
+	    if (! skills.containsKey(s))
 		throw new ApplicationException();
 	}
 
 	Position position = new Position(nome, null);
+	positions.put(nome, position);
 	for (String s : skillsReqd) {
 	    position.addSkill(skills.get(s));
 	    skills.get(s).addPosition(position);
@@ -90,12 +91,13 @@ public class HandleApplications {
 	for (String cap : capabilities.split(",")) {
 	    String capName = cap.split(":")[0];
 	    int capGrade = Integer.valueOf(cap.split(":")[1]);
-	    if (skills.containsKey(capName))
+	    if (! skills.containsKey(capName))
 		throw new ApplicationException();
 	    if (capGrade > 10 || capGrade < 0)
 		throw new ApplicationException();
 	    applicant.appCapability(applicant.new Capability(skills.get(capName), capGrade));
 	}
+	applicants.put(name, applicant);
     }
 
     /**

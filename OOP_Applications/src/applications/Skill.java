@@ -2,10 +2,13 @@ package applications;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class Skill {
     private String name;
-    private List<Position> positions = new ArrayList<>();
+    private SortedMap<String, Position> positions = new TreeMap<>();
 
     public Skill(String name) {
 	super();
@@ -17,7 +20,7 @@ public class Skill {
     }
 
     public void addPosition(Position pos) {
-	positions.add(pos);
+	positions.put(pos.getName(), pos);
     }
 
     /**
@@ -27,7 +30,12 @@ public class Skill {
      **/
 
     public List<Position> getPositions() {
-	return positions;
+	return new ArrayList<>(positions.values());
+    }
+
+    @Override
+    public String toString() {
+	return "Name: " + name + positions.values().stream().map(p -> p.getName()).collect(Collectors.joining("-"));
     }
 
 }
